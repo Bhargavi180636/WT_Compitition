@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Science</title>
+    <link rel="stylesheet" href="vstyle.css">
+
+</head>
+
+<body>
+    <h2>Data Science</h2>
+    <main class="container">
+        <section class="main-video">
+            <video src="videos/1.mp4" controls autoplay muted></video>
+            <h3 class="title"></h3>
+        </section>
+
+        <section class="video-playlist">
+            <h3 class="title">Data Science PlayList</h3>
+            <p>10 lessions &nbsp; . &nbsp; 50m 48s</p>
+            <div class="videos">
+                
+            </div>
+        </section>
+    </main>
+    <script type="text/javascript">
+        const main_video = document.querySelector('.main-video video');
+const main_video_title = document.querySelector('.main-video .title');
+const video_playlist = document.querySelector('.video-playlist .videos');
+
+let data = [
+    {
+        'id': 'a1',
+        'title': 'Installation of Python',
+        'name': '2.mp4',
+        'duration': '2:47',
+    },
+    {
+        'id': 'a2',
+        'title': 'Introduction to python',
+        'name': '1.mp4',
+        'duration': '2:45',
+    },
+    {
+        'id': 'a3',
+        'title': 'variables in python',
+        'name': '3.mp4',
+        'duration': '24:49',
+    },
+
+    {
+        'id': 'a4',
+        'title': 'data science Introduction',
+        'name': '2.mp4',
+        'duration': '3:59',
+    },
+    {
+        'id': 'a5',
+        'title': 'Numpy',
+        'name': '1.mp4',
+        'duration': '4:25',
+    },
+    {
+        'id': 'a4',
+        'title': 'data science Introduction',
+        'name': '2.mp4',
+        'duration': '3:59',
+    },
+    {
+        'id': 'a5',
+        'title': 'Numpy',
+        'name': '1.mp4',
+        'duration': '4:25',
+    }
+
+];
+
+data.forEach((video, i) => {
+    let video_element = `
+                <div class="video" data-id="${video.id}">
+                    <p>${i + 1 > 5 ? i + 1 : '0' + (i + 1)}. </p>
+                    <h3 class="title">${video.title}</h3>
+                    <p class="time">${video.duration}</p>
+                </div>
+    `;
+    video_playlist.innerHTML += video_element;
+    console.log(video_element);
+})
+
+let videos = document.querySelectorAll('.video');
+videos[0].classList.add('active');
+
+videos.forEach(selected_video => {
+    selected_video.onclick = () => {
+
+        for (all_videos of videos) {
+            all_videos.classList.remove('active');
+
+        }
+
+        selected_video.classList.add('active');
+
+        let match_video = data.find(video => video.id == selected_video.dataset.id);
+        console.log(match_video);
+        main_video.src =  match_video.name;
+
+    }
+});
+    </script>
+</body>
+
+</html>
